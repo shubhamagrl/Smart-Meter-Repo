@@ -5,21 +5,26 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import com.example.smartmeter.databinding.ActivityMainBinding
 import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var myButton : Button
-    lateinit var mytext : TextView
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
-        myButton = findViewById(R.id.button)
-        myButton.setOnClickListener{
+        var u1 = User(44,"Shubham","27")
+        binding.user = u1
 
-            mytext.setText("Hello Shubham")
-            Toast.makeText(this, "You clicked the button", Toast.LENGTH_LONG).show()
+        binding.apply {
+            idbutton.setOnClickListener() {
+                Toast.makeText(it.context, "You clicked", Toast.LENGTH_SHORT).show()
+
+            }
         }
     }
 }
