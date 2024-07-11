@@ -3,56 +3,37 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
-    <data>
-        <variable
-            name="User"
-            type="com.example.smartmeter.User" />
-    </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/idtextView2"
-            android:layout_width="wrap_content"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/idappbarlayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="228dp"
-            android:paddingHorizontal="10dp"
-            android:text="@{User.name}"
-            android:textSize="32sp"
-            app:flow_horizontalAlign="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_alignBottom="@id/idviewPager"
+            android:layout_marginBottom="8dp">
 
-        <TextView
-            android:id="@+id/idtextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{Integer.toString(User.id)}"
-            android:textSize="32sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.46" />
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/idtablayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabTextAppearance="@style/CustomTabStyle"
+                app:tabGravity="fill"
+                app:tabMode="fixed" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <Button
-            android:id="@+id/idbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
-            android:text="Button"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="@+id/idtextView"
-            app:layout_constraintStart_toStartOf="@+id/idtextView"
-            app:layout_constraintTop_toBottomOf="@+id/idtextView" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/idviewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.viewpager.widget.ViewPager>
+
+    </RelativeLayout>
 </layout>
