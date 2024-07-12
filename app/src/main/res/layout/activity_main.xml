@@ -21,7 +21,6 @@
                 android:id="@+id/idtablayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabTextAppearance="@style/CustomTabStyle"
                 app:tabGravity="fill"
                 app:tabMode="fixed"
                 app:tabIndicatorGravity="stretch"
