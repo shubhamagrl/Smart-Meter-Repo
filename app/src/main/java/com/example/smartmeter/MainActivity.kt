@@ -2,11 +2,17 @@ package com.example.smartmeter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.w3c.dom.Text
@@ -23,6 +29,33 @@ class MainActivity : AppCompatActivity() {
 
         setup()
     }
+
+    fun getTabView(position: Int): View {
+        val view = LayoutInflater.from(this).inflate(R.layout.custom_tab, null)
+        val tabIcon: ImageView = view.findViewById(R.id.tab_icon)
+        val tabTitle: TextView = view.findViewById(R.id.tab_title)
+
+        when (position) {
+            0 -> {
+                tabIcon.setImageResource(R.drawable.home_icon)
+                tabTitle.text = "Home"
+            }
+            1 -> {
+                tabIcon.setImageResource(R.drawable.bill_icon)
+                tabTitle.text = "Bill"
+            }
+            2 -> {
+                tabIcon.setImageResource(R.drawable.programs_icon)
+                tabTitle.text = "Events"
+            }
+            3 -> {
+                tabIcon.setImageResource(R.drawable.help_icon)
+                tabTitle.text = "Help"
+            }
+        }
+        return view
+    }
+
     private fun setup(){
 
         viewPager = findViewById(R.id.idviewPager)
@@ -32,12 +65,15 @@ class MainActivity : AppCompatActivity() {
         myAdapter.addFragments(fragment_one(),"Home")
         myAdapter.addFragments(fragment_two(),"Bill")
         myAdapter.addFragments(fragment_three(),"Program")
+        myAdapter.addFragments(fragment_four(),"Help")
+
         viewPager.adapter = myAdapter
         tablayout.setupWithViewPager(viewPager)
 
-        tablayout.getTabAt(0)!!.setIcon(R.drawable.home_icon)
-        tablayout.getTabAt(1)!!.setIcon(R.drawable.bill_icon)
-        tablayout.getTabAt(2)!!.setIcon(R.drawable.programs_icon)
+        for (i in 0 until tablayout.tabCount) {
+            val tab = tablayout.getTabAt(i)
+            tab?.customView = getTabView(i)
+        }
     }
 
 }

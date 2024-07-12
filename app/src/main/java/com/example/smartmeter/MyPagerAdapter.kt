@@ -6,8 +6,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class MyPagerAdapter(supportFragmentManager: FragmentManager) : FragmentPagerAdapter(
-    supportFragmentManager,
+class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(
+    fm,
     BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 ) {
 
@@ -26,7 +26,7 @@ class MyPagerAdapter(supportFragmentManager: FragmentManager) : FragmentPagerAda
         return fragmentsTitleList[position]
     }
 
-    fun addFragments(fragment: Fragment, title: String){
+    fun addFragments(fragment: Fragment, title: String) {
         fragmentsList.add(fragment)
         fragmentsTitleList.add(title)
     }
